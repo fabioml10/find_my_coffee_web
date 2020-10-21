@@ -38,7 +38,7 @@ function App() {
           zoom={15}
           center={{lat: latitude, lng: longitude}}>
             {
-              locations.forEach((item, index) => {
+              locations.map((item, index) => {
                 return (
                   <Marker key={index} icon="/images/coffee-pin.png" title={item.name} animation="4"
                     position={{lat: item.geometry.location.lat, lng: item.geometry.location.lng}}/>
