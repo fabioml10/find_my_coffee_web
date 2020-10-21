@@ -1,5 +1,7 @@
-import React, { useState, useEffect} from 'react';
-import { GoogleMap, LoadScript, Marker } from '@react-google-maps/api';
+import React, { useState, useEffect} from 'react'
+import { GoogleMap, LoadScript, Marker } from '@react-google-maps/api'
+
+import Establishment from './components/Establishment'
 
 import GoogleListEstablishmentsService from './services/google_list_establishments'
 
@@ -9,6 +11,7 @@ function App() {
   const [latitude, setLatitude] = useState(0)
   const [longitude, setLongitude] = useState(0)
   const [locations, setLocations] = useState([])
+  const [selected, setSelected] = useState({})
 
   async function setCurrentLocation () {
     await navigator.geolocation.getCurrentPosition( (position) => {
@@ -41,9 +44,15 @@ function App() {
               locations.map((item, index) => {
                 return (
                   <Marker key={index} icon="/images/coffee-pin.png" title={item.name} animation="4"
-                    position={{lat: item.geometry.location.lat, lng: item.geometry.location.lng}}/>
+                    position={{lat: item.geometry.location.lat, lng: item.geometry.location.lng}}
+                    onClick={() => setSelected(item)}/>
                 )
               })
+            }
+            {
+              selected.place_id && (
+                <Establishment place={selected}/>
+              )
             }
             <Marker key="myLocation" icon="/images/my-location-pin.png" title="Meu Local" animation="2"
               position={{lat: latitude, lng: longitude}}/>
