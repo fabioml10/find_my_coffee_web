@@ -33,7 +33,7 @@ const Button = styled.button`
 const Form = (props) => {
   const [name, setName] = useState('')
   const [message, setMessage] = useState('')
-  const [value, setValue] = useState('')
+  const [value, setValue] = useState(0)
 
   async function handleSubmit(e) {
     //não recarrega a página
@@ -48,17 +48,17 @@ const Form = (props) => {
     }
 
     const rating_params = {
-      value: (value == null) ? 1 : value,
+      value: (value === null) ? 0 : value,
       opinion: message,
       user_name: name
   }
   
   await RatingService.create(store_params, rating_params)
-  //baixar os comentários
-  // props.loadStore()
-  setName('')
-  setMessage('')
-}
+    //baixar os comentários
+    props.loadStore()
+    setName('')
+    setMessage('')
+  }
 
   return (
     <>

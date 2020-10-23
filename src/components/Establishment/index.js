@@ -79,7 +79,7 @@ const Establishment = (props) => {
       }
       <hr/>
     <Paragraph>{establishment.formatted_address}</Paragraph>
-    <Ratings></Ratings>
+    <Ratings place={props.place}></Ratings>
     </LeftBar>
   )
 }
