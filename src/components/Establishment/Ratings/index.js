@@ -11,19 +11,13 @@ const Ratings = (props) => {
   }, [props.place])
 
   async function loadStore() {
-    console.log("testand")
-    console.log(props.place.place_id)
     setStore([]);
     try {
       const response = await StoreService.show(props.place.place_id);
       setStore(response.data);
-
-      console.log(response.data)
     } catch (error) {
       setStore([]);
     }
-
-
   }
 
   return (
