@@ -3,6 +3,7 @@ import React, { useState, useEffect} from 'react'
 import GoogleListEstablishmentsService from '../../services/google_list_establishments'
 
 import styled from 'styled-components'
+import Ratings from './Ratings'
 
 const LeftBar = styled.div`
   heigth: 100%;
@@ -78,6 +79,7 @@ const Establishment = (props) => {
       }
       <hr/>
     <Paragraph>{establishment.formatted_address}</Paragraph>
+    <Ratings></Ratings>
     </LeftBar>
   )
 }
